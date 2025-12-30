@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodify - AI Ambience</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Background Video Layer -->
+    <!-- Background Video Layer -->
+    <div id="video-container">
+        <video autoplay muted loop id="bg-video">
+            <source src="" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- Main Content -->
+    <!-- Main Content Wrapper -->
+    <div class="app-container" id="app-wrapper">
+        <main class="glass-container" id="main-content">
+            <header>
+                <div class="header-top">
+                    <h1>Moodify</h1>
+                    <div class="header-buttons">
+                        <button id="focus-btn" class="icon-text-btn" title="Open Pomodoro Timer">
+                            ⏳ Focus
+                        </button>
+                        <button id="fav-btn" class="icon-text-btn" title="Saved Vibes">
+                            ⭐ Favorites
+                        </button>
+                    </div>
+                </div>
+                <p>Describe your vibe, and we'll creates the atmosphere.</p>
+            </header>
+
+            <div class="input-section">
+                <input type="text" id="user-prompt" placeholder="e.g. Reading a book in a cozy cabin during snow...">
+                <button id="mic-btn" class="icon-btn" title="Voice Input">
+                    🎤
+                </button>
+                <button id="generate-btn">
+                    <span class="icon">✨</span> Generate
+                </button>
+                <button id="like-btn" class="icon-btn" title="Save this Vibe">
+                    ♡
+                </button>
+            </div>
+
+            <div id="status-msg"></div>
+
+            <!-- Music Embed (YouTube) -->
+            <div class="music-container hidden" id="music-panel">
+                <!-- Audio Player (Restored) -->
+                <audio id="bg-audio" loop></audio>
+
+                <!-- Music Controls (Custom) -->
+                <div class="control-wrapper" id="music-controls">
+                    <button id="music-play-btn" class="circle-btn" title="Play/Pause">
+                        <img id="music-play-icon" src="{{ url_for('static', filename='assets/pause.png') }}" alt="Play">
+                    </button>
+
+                    <div class="volume-pill">
+                        <span class="vol-icon">-</span>
+                        <input type="range" id="music-vol-slider" min="0" max="100" step="1" value="50">
+                        <span class="vol-icon">+</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Pomodoro Timer Card (Side-by-Side) -->
+        <div class="glass-container menu-card hidden" id="timer-card">
+            <button id="close-timer" class="close-icon">&times;</button>
+            <h2>Focus Mode</h2>
+            <div class="timer-wrapper">
+                <button id="time-minus" class="adjust-btn">−</button>
+                <div id="timer-display">25:00</div>
+                <button id="time-plus" class="adjust-btn">+</button>
+            </div>
+
+            <div class="timer-controls">
+                <button id="start-timer" class="timer-btn">Start</button>
+                <button id="reset-timer" class="timer-btn secondary">Reset</button>
+            </div>
+            <button id="toggle-mode" class="text-btn">Switch to Short Break (5:00)</button>
+        </div>
+
+        <!-- Favorites Card (Side-by-Side) -->
+        <div class="glass-container menu-card hidden" id="fav-card">
+            <button id="close-fav" class="close-icon">&times;</button>
+            <h2>Saved Vibes</h2>
+            <div id="fav-list">
+                <!-- Favorites will be injected here -->
+                <p class="empty-msg">No saved vibes yet.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
